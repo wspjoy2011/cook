@@ -38,6 +38,7 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ('author', 'title')
     list_filter = ('author', 'tags')
     inlines = (RecipeInline,)
+    prepopulated_fields = {'slug': ('title',)}
     # filter_horizontal = ('tags',)
 
 

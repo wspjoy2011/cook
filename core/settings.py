@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'mptt',
     # Local
     'blog.apps.BlogConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [

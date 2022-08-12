@@ -45,6 +45,7 @@ class Post(models.Model):
         on_delete=models.CASCADE
     )
     title = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200)
     text = models.TextField()
     image = models.ImageField(upload_to='articles/%Y/%m/%d/')
     category = models.ForeignKey(
@@ -61,7 +62,7 @@ class Post(models.Model):
         return f'Post: {self.title[:50]}'
 
     def get_absolute_url(self):
-        return reverse('post_detail', args=[self.category, str(self.pk)])
+        return reverse('post_detail', args=[self.category.slug, self.slug])
 
 
 class Recipe(models.Model):
