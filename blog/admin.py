@@ -39,6 +39,8 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('author', 'tags')
     inlines = (RecipeInline,)
     prepopulated_fields = {'slug': ('title',)}
+    save_as = True
+    save_on_top = True
     # filter_horizontal = ('tags',)
 
 
@@ -47,3 +49,11 @@ class RecipeAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'prep_time', 'cook_time', 'post')
     list_display_links = ('id', 'name')
     search_fields = ('name', 'serves', 'ingredients', 'directions')
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'email', 'website')
+    list_display_links = ('id', 'email', 'website')
+    list_filter = ('name', 'email')
+    search_fields = ('name', 'email', 'website')

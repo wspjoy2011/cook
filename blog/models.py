@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from mptt.models import MPTTModel, TreeForeignKey
+from ckeditor.fields import RichTextField
 
 
 User = get_user_model()
@@ -45,7 +46,7 @@ class Post(models.Model):
         on_delete=models.CASCADE
     )
     title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True)
     text = models.TextField()
     image = models.ImageField(upload_to='articles/%Y/%m/%d/')
     category = models.ForeignKey(
@@ -70,8 +71,8 @@ class Recipe(models.Model):
     serves = models.CharField(max_length=100)
     prep_time = models.PositiveIntegerField(default=0)
     cook_time = models.PositiveIntegerField(default=0)
-    ingredients = models.TextField()
-    directions = models.TextField()
+    ingredients = RichTextField()
+    directions = RichTextField()
     post = models.ForeignKey(
         Post,
         related_name='recipe',

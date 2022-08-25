@@ -11,4 +11,4 @@ class Profile(models.Model):
     about = models.TextField()
 
     def __str__(self):
-        return f'{self.user.username}'
+        return f'{self.user.first_name} {self.user.last_name}'

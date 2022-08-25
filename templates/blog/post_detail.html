@@ -24,9 +24,9 @@
                             </ul>
                             <h4>{{ post.title }}</h4>
                             <ul class="widget">
-                                <li>by {{ post.author }}</li>
-                                <li>3 min read</li>
-                                <li>20 Comment</li>
+                                <li>by {{ post.author|capfirst }}</li>
+                                <li>{{ post.text|counttime }} min read</li>
+                                <li>{{ post.comment.count }} Comment{{ post.comment.count|pluralize }}</li>
                             </ul>
                         </div>
                     </div>
@@ -123,7 +123,7 @@
                             <img src="{{ post.author.profile.image.url }}" alt="">
                         </div>
                         <div class="single-post__author__profile__text">
-                            <h4>{{ post.author }}</h4>
+                            <h4>{{ post.author.profile }}</h4>
                             <p>{{ post.author.profile.about }}</p>
                             <div class="single-post__author__profile__social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
