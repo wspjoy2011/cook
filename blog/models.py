@@ -24,11 +24,14 @@ class Category(MPTTModel):
 
     class Meta:
         verbose_name = 'category'
-        verbose_name_plural = 'category'
+        verbose_name_plural = 'categories'
         ordering = ['name']
 
     def __str__(self):
         return f'{self.name[:50]}'
+
+    def get_absolute_url(self):
+        return reverse('post_list', args=[self.slug])
 
 
 class Tag(models.Model):
