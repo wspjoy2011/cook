@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load static %}
 
 {% block title %}Category: {{ cat }}{% endblock title %}
 
@@ -80,10 +81,10 @@
                                 <div class="sidebar__item__title">
                                     <h6>About me</h6>
                                 </div>
-                                <img src="img/sidebar/sidebar-about.jpg" alt="">
-                                <h6>Hi every one! I,m <span>Lena Mollein.</span></h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
+                                <img src="{{ chief.profile.image.url }}" alt="">
+                                <h6>Hi every one! I,m <span>{{ chief.profile }}</span></h6>
+                                <br>
+                                <p>{{ chief.profile.about }}</p>
                                 <a href="#" class="primary-btn">Read more</a>
                             </div>
                             <div class="sidebar__follow__item">

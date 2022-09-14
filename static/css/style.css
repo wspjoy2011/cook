@@ -2602,9 +2602,8 @@ li:hover .children {
 	margin-bottom: 20px;
 }
 
-.contact__widget ul li i {
-	height: 50px;
-	width: 50px;
+.contact__widget ul li img {
+    width: 20px;
 	border: 1px solid #e1e1e1;
 	font-size: 18px;
 	color: #f4952f;
@@ -2617,7 +2616,7 @@ li:hover .children {
 .contact__widget ul li span {
 	display: inline-block;
 	font-size: 14px;
-	color: #444444;
+	color: #544444;
 }
 
 .contact__form .contact__form__title h2 {

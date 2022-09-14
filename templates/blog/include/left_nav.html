@@ -16,13 +16,7 @@
     </nav>
     <div id="mobile-menu-wrap"></div>
     <div class="humberger__menu__about">
-        <img src="{{ chief.profile.image.url }}" alt="chief avatar">
-        <div class="humberger__menu__title sidebar__item__title">
-            <h6>About me</h6>
-        </div>
-        <img src="img/humberger/humberger-about.jpg" alt="">
-        <h6><b>Hi every one! I,m {{ chief.profile }}.</b></h6><br>
-        <p>{{ chief.profile.about }}</p>
+        {% get_chief %}
         <div class="humberger__menu__about__social sidebar__item__follow__links">
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa fa-twitter"></i></a>

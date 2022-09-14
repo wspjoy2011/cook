@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load post_tag %}
+{% load social_tag %}
 
 {% block title %}Home Page{% endblock title %}
 
@@ -242,9 +243,10 @@
                                     <a href="#" class="primary-btn">Read more</a>
                                     <div class="post__social">
                                         <span>Share</span>
-                                        <a href="#"><i class="fa fa-facebook"></i> <span>0</span></a>
-                                        <a href="#"><i class="fa fa-twitter"></i> <span>0</span></a>
-                                        <a href="#"><i class="fa fa-envelope-o"></i> <span>0</span></a>
+                                        {% get_social_links as links %}
+                                        {% for link in links %}
+                                            <a href="{{ link.link }}"><i class="fa fa-{{ link.icon }}"></i><span>0</span></a>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -313,7 +315,7 @@
                                 <div class="sidebar__item__title">
                                     <h6>About me</h6>
                                 </div>
-                                <img src="img/sidebar/sidebar-about.jpg" alt="">
+                                <img src="{{ chief.profile.image.url }}" alt="">
                                 <h6>Hi every one! I,m <span>{{ chief.profile }}</span>.</h6>
                                 <p>{{ chief.profile.about }}</p>
                                 <a href="#" class="primary-btn">Read more</a>
@@ -323,11 +325,10 @@
                                     <h6>Follow me</h6>
                                 </div>
                                 <div class="sidebar__item__follow__links">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-envelope-o"></i></a>
+                                    {% get_social_links as links %}
+                                    {% for link in links %}
+                                        <a href="{{ link.link }}"><i class="fa fa-{{ link.icon }}"></i></a>
+                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="sidebar__feature__item">

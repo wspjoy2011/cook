@@ -29,6 +29,7 @@ class PostListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
         context['cat'] = self.kwargs.get('cat_slug')
+        context['chief'] = User.objects.get(username='admin')
         return context
 
 

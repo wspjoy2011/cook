@@ -1,6 +1,7 @@
 {% extends '_base.html' %}
 {% load static %}
 {% load post_tag %}
+{% load social_tag %}
 
 {% block title %}{{ cat|title }} | {{ post.title }}{% endblock title %}
 
@@ -32,10 +33,10 @@
                     </div>
                     <div class="single-post__social__item">
                         <ul>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                        {% get_social_links as links %}
+                        {% for link in links %}
+                            <li><a href="{{ link.link }}"><i class="fa fa-{{ link.icon }}"></i></a></li>
+                        {% endfor %}
                         </ul>
                     </div>
                     <div class="single-post__top__text">
@@ -126,11 +127,10 @@
                             <h4>{{ post.author.profile }}</h4>
                             <p>{{ post.author.profile.about }}</p>
                             <div class="single-post__author__profile__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-google-plus"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            {% get_social_links as links %}
+                            {% for link in links %}
+                                <a href="{{ link.link }}"><i class="fa fa-{{ link.icon }}"></i></a>
+                            {% endfor %}
                             </div>
                         </div>
                     </div>
