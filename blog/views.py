@@ -1,7 +1,10 @@
 from django.contrib.auth import get_user_model
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.views.generic import ListView, DetailView
 
-from .models import Post
+from .models import Post, Comment
+from .forms import CommentForm
 
 User = get_user_model()
 
@@ -41,5 +44,24 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
+        context['form'] = CommentForm()
         context['cat'] = self.kwargs.get('cat_slug')
+        context['comments'] = Comment.objects.filter(post=context['post'].id)
+        context['comments_count'] = Comment.objects.filter(post=context['post'].id).count()
         return context
+
+    def post(self, request, *args, **kwargs):
+        form = CommentForm(request.POST)
+        self.object = self.get_object()
+        if form.is_valid():
+            comment = Comment.objects.create(
+                name=form.cleaned_data['name'],
+                email=form.cleaned_data['email'],
+                website=form.cleaned_data['website'],
+                message=form.cleaned_data['message'],
+                post=self.object
+            )
+            comment.save()
+        return HttpResponseRedirect(reverse('post_detail', args=[self.object.category.slug, self.object.slug]))
+
+

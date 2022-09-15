@@ -13,7 +13,6 @@ def get_categories():
     category = Category.objects.all()
     user = get_user_model()
     chief = user.objects.get(username='admin')
-    print(chief)
     return {'list_category': category, 'chief': chief}
 
 
@@ -21,7 +20,6 @@ def get_categories():
 def get_chief():
     user = get_user_model()
     chief = user.objects.get(username='admin')
-    print(chief)
     return {'chief': chief}
 
 
