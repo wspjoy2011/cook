@@ -46,6 +46,7 @@ class PostDetailView(DetailView):
         context = super(PostDetailView, self).get_context_data(**kwargs)
         context['form'] = CommentForm()
         context['cat'] = self.kwargs.get('cat_slug')
+        context['chief'] = User.objects.get(username='admin')
         context['comments'] = Comment.objects.filter(post=context['post'].id)
         context['comments_count'] = Comment.objects.filter(post=context['post'].id).count()
         return context
