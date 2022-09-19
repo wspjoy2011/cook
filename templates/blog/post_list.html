@@ -1,6 +1,7 @@
 {% extends '_base.html' %}
 {% load static %}
 {% load social_tag %}
+{% load cache %}
 
 {% block title %}Category: {{ cat }}{% endblock title %}
 
@@ -76,7 +77,9 @@
                             </div>
                         </div>
                     </div>
+                    {% cache 500 sidebar %}
                     {% include 'blog/include/sidebar.html' %}
+                    {% endcache %}
                 </div>
             </div>
         </div>

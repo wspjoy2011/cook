@@ -15,7 +15,7 @@
             <h6>Hi every one! I,m <span>{{ chief.profile }}</span></h6>
             <br>
             <p>{{ chief.profile.about }}</p>
-            <a href="#" class="primary-btn">Read more</a>
+            <a href="{% url 'about' %}" class="primary-btn">Read more</a>
         </div>
         <div class="sidebar__follow__item">
             <div class="sidebar__item__title">
@@ -63,7 +63,7 @@
             {% endfor %}
         </div>
         <div class="sidebar__item__banner">
-            <img src="img/sidebar/banner.jpg" alt="">
+            <img src="{% static 'img/sidebar/banner.jpg' %}" alt="">
         </div>
         <div class="sidebar__item__categories">
             <div class="sidebar__item__title">

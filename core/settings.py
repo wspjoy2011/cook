@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'sorl.thumbnail',
     'crispy_forms',
+    "debug_toolbar",
 
     # Local
     'blog.apps.BlogConfig',
@@ -59,6 +60,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Third-party
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -170,5 +175,16 @@ CKEDITOR_CONFIGS = {
         [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ],
         [ 'Maximize', 'ShowBlocks' ]
     ],
+    }
+}
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'cache'),
     }
 }
