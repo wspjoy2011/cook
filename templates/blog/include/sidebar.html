@@ -1,0 +1,102 @@
+{% load social_tag %}
+{% load static %}
+{% load menu_tag %}
+{% load sidebar_tag %}
+{% load mptt_tags %}
+
+
+<div class="col-lg-4 col-md-4">
+    <div class="sidebar__item">
+        <div class="sidebar__about__item">
+            <div class="sidebar__item__title">
+                <h6>About me</h6>
+            </div>
+            <img src="{{ chief.profile.image.url }}" alt="">
+            <h6>Hi every one! I,m <span>{{ chief.profile }}</span></h6>
+            <br>
+            <p>{{ chief.profile.about }}</p>
+            <a href="#" class="primary-btn">Read more</a>
+        </div>
+        <div class="sidebar__follow__item">
+            <div class="sidebar__item__title">
+                <h6>Follow me</h6>
+            </div>
+            <div class="sidebar__item__follow__links">
+            {% get_social_links as links %}
+            {% for link in links %}
+                <a href="{{ link.link }}"><i class="fa fa-{{ link.icon }}"></i></a>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="sidebar__feature__item">
+            <div class="sidebar__item__title">
+                <h6>Feature Posts</h6>
+            </div>
+            {% get_first_post as first %}
+            <div class="sidebar__feature__item__large set-bg"
+                data-setbg="{{ first.image.url }}">
+                <div class="sidebar__feature__item__large--text">
+                    <span>{{ first.category }}</span>
+                    <h5>
+                        <a href="{{ first.get_absolute_url }}">{{ first.title }}</a>
+                    </h5>
+                </div>
+            </div>
+            {% get_posts as posts_side %}
+            {% for post in posts_side %}
+            {% if not forloop.last %}
+            <div class="sidebar__feature__item__list">
+                <div class="sidebar__feature__item__list__single">
+                    <div class="post__meta">
+                        <h4>{{ post.update_at|date:"d"}}</h4>
+                        <span>{{ post.update_at|date:"b"}}</span>
+                    </div>
+                    <div class="post__text">
+                        <span>{{ post.category }}</span>
+                        <h5><a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        <span id="sidebar_profile">by @{{ post.author.profile }}</span>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="sidebar__item__banner">
+            <img src="img/sidebar/banner.jpg" alt="">
+        </div>
+        <div class="sidebar__item__categories">
+            <div class="sidebar__item__title">
+                <h6>Categories</h6>
+            </div>
+                <ul>
+                    {% get_categories as list_category %}
+                    {% for node in list_category %}
+                    {% if node.parent is not None %}
+                     <li class="p-left"><a href="{% url 'post_list' node.slug %}">{{ node.name }}
+                         <span>{{ node.get_qty_of_each_category }}</span></a>
+                    {% else %}
+                    <li><a href="{% url 'post_list' node.slug %}">{{ node.name }}
+                        <span>{{ node.get_qty_of_each_category }}</span></a>
+                    {% endif %}
+                    </li>
+                    {% endfor %}
+            </ul>
+        </div>
+        <div class="sidebar__subscribe__item">
+            <div class="sidebar__item__title">
+                <h6>Subscribe</h6>
+            </div>
+            <p>Subscribe to our newsletter and get our newest updates right on your inbox.</p>
+            <form action="#">
+                <input type="text" class="email-input" placeholder="Your email">
+                <label for="s-agree-check">
+                    I agree to the terms & conditions
+                    <input type="checkbox" id="s-agree-check">
+                    <span class="checkmark"></span>
+                </label>
+                <button type="submit" class="site-btn">Subscribe</button>
+            </form>
+        </div>
+    </div>
+</div>

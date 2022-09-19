@@ -3300,3 +3300,8 @@ li:hover .children {
 		line-height: 100px;
 	}
 }
+
+#sidebar_profile {
+    font-size: 18px;
+    color: salmon;
+}

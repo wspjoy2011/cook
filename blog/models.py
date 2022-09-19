@@ -33,6 +33,9 @@ class Category(MPTTModel):
     def get_absolute_url(self):
         return reverse('post_list', args=[self.slug])
 
+    def get_qty_of_each_category(self):
+        return self.post.all().count()
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)
